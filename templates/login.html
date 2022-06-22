@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+<div class="signup_header">
+                <a href="" target="_blank">
+				<img src="https://cdn.discordapp.com/attachments/768083738848133130/768372618880483328/spotify.svg">
+                    </a>
+            </div>
+
+<div class="signup_body">
+            <form action="/login" class="login_form" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="csrfmiddlewaretoken" value="eBWuTk7uJB27b0ILsCm5le4T9sEaWTbEk300PJ0wnW8Thf7XT7hEp45BW6Etud2F">
+                <label for="login-username" class="label">
+                    Email address
+                </label>
+
+                <input type="text" class="form_input" pattern="[A-Za-z0-9.@_-e]+" name="email" placeholder="Email address or username" required="">
+                {% if error %}
+                     <p class="text-danger">{{ error }} </p>
+                 {% endif %}
+                <label for="login-username" class="label">
+                    Password
+                </label>
+                <input type="password" class="form_input" name="password" placeholder="Password" required="">
+
+                <button class="btn btn_log_in" type="submit">Log in</button>
+                <div class="divider"></div>
+                <p class="label center-align">Don't have an account?</p>
+            <a class="btn btn_sign_up" href="/signup">Sign Up for spotify</a>
+            </form>
+        </div>
+
+{% endblock %}

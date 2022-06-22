@@ -1,0 +1,67 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Signup</title>
+{% endblock %}
+
+{% block script %}
+ <script>
+    function checkPassword(form) {
+        const confirm_password = document.getElementById("cpwd");
+        var password = document.getElementById("pwd").value;
+        if (password != confirm_password.value) {
+            confirm_password.setCustomValidity("Password did not match");
+        } else {
+            confirm_password.setCustomValidity("");
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="signup_header">
+                <a href="" target="_blank">
+				<img src="https://cdn.discordapp.com/attachments/768083738848133130/768372618880483328/spotify.svg">
+                    </a>
+</div>
+<div class="signup_body">
+        <form class="login_form" action="/signup" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="KzecLEz5MNxhCoJbHL2qiyCdiSuRMg3wQ1iIH3s7q8D3ID8n8gXZmoDV5wuakAUx">
+
+            <span class="label signup-title center-align">Sign up for free to start listening.</span>
+            <label for="sign-up-username" class="label">
+                What's your name?
+            </label>
+
+            <input type="text" class="form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required="">
+
+
+            <label for="sign-up-email" class="label">
+                What's your email?
+            </label>
+
+            <input type="email" class="form_input" name="email" placeholder="Enter your email." required="">
+            {% if msg %}
+            <p class="text-danger">{{ msg }} </p>
+            {% endif %}
+
+            <label for="sign-up-pwd" class="label">
+                Create a password
+            </label>
+            <input type="password" class="form_input" id="pwd" name="password" placeholder="Create a password." required="">
+
+            <label for="sign-up-cpwd" class="label">
+                Confirm your password
+            </label>
+            <input type="password" class="form_input" id="cpwd" name="confirm-password" oninput="checkPassword(this)" placeholder="Re-type your password" required="">
+
+            <button class="btn btn_log_in" type="submit">Sign up</button>
+            <div class="divider"></div>
+            <p class="label center-align">Already have an account? <a href="/login">Log in</a>.</p>
+        </form>
+    </div>
+
+{% endblock %}
